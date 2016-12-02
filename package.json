@@ -1,12 +1,9 @@
 {
-  "name": "react-timer",
+  "name": "react-todo",
   "version": "1.0.0",
-  "description": "Simple react timer app",
+  "description": "Simple react todo app",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
-    "build": "webpack --progress --colors -d --watch",
-    "dev": "webpack-dev-server --content-base ./public --inline",
     "test": "karma start"
   },
   "author": "Willie Smith",
