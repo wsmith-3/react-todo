@@ -26486,7 +26486,6 @@
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TodoSearch.__proto__ || Object.getPrototypeOf(TodoSearch)).call.apply(_ref, [this].concat(args))), _this), _this.handleSearch = function () {
 	      var showCompleted = _this.refs.showCompleted.checked;
 	      var searchText = _this.refs.searchText.value;
-	      console.log(_this.props);
 	      _this.props.onSearch(showCompleted, searchText);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
