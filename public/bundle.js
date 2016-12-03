@@ -135,7 +135,7 @@
 	$(document).foundation();
 	
 	//App css
-	__webpack_require__(/*! style!css!sass!applicationStyles */ 232);
+	__webpack_require__(/*! style!css!sass!applicationStyles */ 233);
 	
 	_reactDom2.default.render(_react2.default.createElement(_TodoApp2.default, null), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 7)))
@@ -26177,6 +26177,10 @@
 	
 	var _TodoList2 = _interopRequireDefault(_TodoList);
 	
+	var _AddTodo = __webpack_require__(/*! AddTodo */ 232);
+	
+	var _AddTodo2 = _interopRequireDefault(_AddTodo);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26192,6 +26196,10 @@
 	    _classCallCheck(this, TodoApp);
 	
 	    var _this = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this, props));
+	
+	    _this.handleAddTodo = function (text) {
+	      alert('new todo: ' + text);
+	    };
 	
 	    _this.state = {
 	      todos: [{
@@ -26220,7 +26228,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_TodoList2.default, { todos: todos })
+	        _react2.default.createElement(_TodoList2.default, { todos: todos }),
+	        _react2.default.createElement(_AddTodo2.default, { handleAddTodo: this.handleAddTodo })
 	      );
 	    }
 	  }]);
@@ -26347,6 +26356,82 @@
 
 /***/ },
 /* 232 */
+/*!************************************!*\
+  !*** ./app/components/AddTodo.jsx ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 8);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AddTodo = function (_React$Component) {
+	  _inherits(AddTodo, _React$Component);
+	
+	  function AddTodo() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, AddTodo);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddTodo.__proto__ || Object.getPrototypeOf(AddTodo)).call.apply(_ref, [this].concat(args))), _this), _this.onSubmit = function (e) {
+	      e.preventDefault();
+	      var todo = _this.refs.todo.value;
+	      if (todo.length > 0) {
+	        _this.refs.todo.value = '';
+	        _this.props.handleAddTodo(todo);
+	      }
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(AddTodo, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { ref: 'form', onSubmit: this.onSubmit, className: 'add-todo-form' },
+	          _react2.default.createElement('input', { type: 'text', ref: 'todo', placeholder: 'What do you want to do?' }),
+	          _react2.default.createElement(
+	            'button',
+	            { className: 'button expanded' },
+	            'Add Todo'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AddTodo;
+	}(_react2.default.Component);
+	
+	AddTodo.propTypes = {
+	  handleAddTodo: _react2.default.PropTypes.func.isRequired
+	};
+	
+	module.exports = AddTodo;
+
+/***/ },
+/* 233 */
 /*!*****************************************************************************!*\
   !*** ./~/style-loader!./~/css-loader!./~/sass-loader!./app/styles/app.scss ***!
   \*****************************************************************************/
@@ -26355,10 +26440,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/sass-loader!./app.scss */ 233);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/sass-loader!./app.scss */ 234);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 235)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 236)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26375,13 +26460,13 @@
 	}
 
 /***/ },
-/* 233 */
+/* 234 */
 /*!************************************************************!*\
   !*** ./~/css-loader!./~/sass-loader!./app/styles/app.scss ***!
   \************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 234)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 235)();
 	// imports
 	
 	
@@ -26392,7 +26477,7 @@
 
 
 /***/ },
-/* 234 */
+/* 235 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -26451,7 +26536,7 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
