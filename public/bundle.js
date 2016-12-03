@@ -135,7 +135,7 @@
 	$(document).foundation();
 	
 	//App css
-	__webpack_require__(/*! style!css!sass!applicationStyles */ 233);
+	__webpack_require__(/*! style!css!sass!applicationStyles */ 234);
 	
 	_reactDom2.default.render(_react2.default.createElement(_TodoApp2.default, null), document.getElementById('app'));
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! jquery */ 7)))
@@ -26181,6 +26181,10 @@
 	
 	var _AddTodo2 = _interopRequireDefault(_AddTodo);
 	
+	var _TodoSearch = __webpack_require__(/*! TodoSearch */ 233);
+	
+	var _TodoSearch2 = _interopRequireDefault(_TodoSearch);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -26201,7 +26205,16 @@
 	      alert('new todo: ' + text);
 	    };
 	
+	    _this.handleSearch = function (showCompleted, searchText) {
+	      _this.setState({
+	        showCompleted: showCompleted,
+	        searchText: searchText.toLowerCase()
+	      });
+	    };
+	
 	    _this.state = {
+	      showCompleted: false,
+	      searchText: '',
 	      todos: [{
 	        id: 1,
 	        text: 'Walk the dog'
@@ -26228,6 +26241,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_TodoSearch2.default, { onSearch: this.handleSearch }),
 	        _react2.default.createElement(_TodoList2.default, { todos: todos }),
 	        _react2.default.createElement(_AddTodo2.default, { handleAddTodo: this.handleAddTodo })
 	      );
@@ -26391,12 +26405,14 @@
 	      args[_key] = arguments[_key];
 	    }
 	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddTodo.__proto__ || Object.getPrototypeOf(AddTodo)).call.apply(_ref, [this].concat(args))), _this), _this.onSubmit = function (e) {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AddTodo.__proto__ || Object.getPrototypeOf(AddTodo)).call.apply(_ref, [this].concat(args))), _this), _this.handleSubmit = function (e) {
 	      e.preventDefault();
-	      var todo = _this.refs.todo.value;
+	      var todo = _this.refs.todoText.value;
 	      if (todo.length > 0) {
-	        _this.refs.todo.value = '';
+	        _this.refs.todoText.value = '';
 	        _this.props.handleAddTodo(todo);
+	      } else {
+	        _this.refs.todoText.focus();
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -26409,8 +26425,8 @@
 	        null,
 	        _react2.default.createElement(
 	          'form',
-	          { ref: 'form', onSubmit: this.onSubmit, className: 'add-todo-form' },
-	          _react2.default.createElement('input', { type: 'text', ref: 'todo', placeholder: 'What do you want to do?' }),
+	          { ref: 'form', onSubmit: this.handleSubmit, className: 'add-todo-form' },
+	          _react2.default.createElement('input', { type: 'text', ref: 'todoText', placeholder: 'What do you want to do?' }),
 	          _react2.default.createElement(
 	            'button',
 	            { className: 'button expanded' },
@@ -26432,6 +26448,81 @@
 
 /***/ },
 /* 233 */
+/*!***************************************!*\
+  !*** ./app/components/TodoSearch.jsx ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 8);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var TodoSearch = function (_React$Component) {
+	  _inherits(TodoSearch, _React$Component);
+	
+	  function TodoSearch() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, TodoSearch);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TodoSearch.__proto__ || Object.getPrototypeOf(TodoSearch)).call.apply(_ref, [this].concat(args))), _this), _this.handleSearch = function () {
+	      var showCompleted = _this.refs.showCompleted.checked;
+	      var searchText = _this.refs.searchText.value;
+	      console.log(_this.props);
+	      _this.props.onSearch(showCompleted, searchText);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(TodoSearch, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement('input', { type: 'search', ref: 'searchText', placeholder: 'Search todos', onChange: this.handleSearch })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'label',
+	            null,
+	            _react2.default.createElement('input', { type: 'checkbox', ref: 'showCompleted', onChange: this.handleSearch }),
+	            'Show completed todos'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return TodoSearch;
+	}(_react2.default.Component);
+	
+	module.exports = TodoSearch;
+
+/***/ },
+/* 234 */
 /*!*****************************************************************************!*\
   !*** ./~/style-loader!./~/css-loader!./~/sass-loader!./app/styles/app.scss ***!
   \*****************************************************************************/
@@ -26440,10 +26531,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/sass-loader!./app.scss */ 234);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./../../~/sass-loader!./app.scss */ 235);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 236)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 237)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -26460,13 +26551,13 @@
 	}
 
 /***/ },
-/* 234 */
+/* 235 */
 /*!************************************************************!*\
   !*** ./~/css-loader!./~/sass-loader!./app/styles/app.scss ***!
   \************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 235)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 236)();
 	// imports
 	
 	
@@ -26477,7 +26568,7 @@
 
 
 /***/ },
-/* 235 */
+/* 236 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -26536,7 +26627,7 @@
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
